@@ -24,8 +24,8 @@ int main(int argc, char **argv)
     {
         for (size_t i = 1; argv[i]; i++)
             string += argv[i];
-        for (size_t j = 1; string[j]; j++)
-            string[j] = std::toupper(string[j]);
+        for (std::string::iterator iter = string.begin(); iter != string.end(); iter++)
+            *iter = std::toupper(*iter);
         std::cout << string << std::endl;
     }
     return (0);

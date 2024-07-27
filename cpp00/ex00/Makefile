@@ -16,7 +16,7 @@ NAME		=	megaphone
 
 #========= COMPILATOR =========#
 
-CCP			=	c++
+CPP			=	c++
 
 #=========== FLAGS ============#
 
