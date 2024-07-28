@@ -1,0 +1,35 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   phonebbok.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tchartie <tchartie@42.fr>                  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/27 23:16:23 by tchartie          #+#    #+#             */
+/*   Updated: 2024/07/27 23:16:23 by tchartie         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHONEBBOK_H
+# define PHONEBOOK_H
+
+# include "contact.hpp"
+
+class PhoneBook
+{
+	public:
+		PhoneBook(void);	// Constructor
+        ~PhoneBook(void);	// Destructor
+    
+		// Getters
+		void	searchContact(void);
+
+        // Setters
+		void	addNewContact(void);
+
+	private:
+		int		index;
+		Contact	contacts[8];
+};
+
+#endif //PHONEBOOK_H
