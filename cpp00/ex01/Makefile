@@ -37,6 +37,7 @@ WHITE		=	\033[0;97m
 #========== SOURCES ===========#
 
 SRCS 		=	main.cpp \
+				contact.cpp \
 				phonebook.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
