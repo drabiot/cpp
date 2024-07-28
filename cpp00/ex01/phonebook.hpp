@@ -21,10 +21,12 @@ public:
   ~PhoneBook(void); // Destructor
 
   // Getters
-  void searchContact(void);
+  void  searchContact(void);
+  void  displayContact(void);
 
   // Setters
-  void addNewContact(void);
+  void  addNewContact(void);
+  void  addInfoContact(std::string info, std::string content);
 
 private:
   int _index;

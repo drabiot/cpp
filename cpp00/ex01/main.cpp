@@ -25,12 +25,10 @@ int check_cmd(std::string command, PhoneBook *phonebook) {
   {
   	case 0: {
     	(*phonebook).addNewContact();
-		std::cout << "add" << std::endl;
 		break;
   	}
   	case 1: {
     	(*phonebook).searchContact();
-		std::cout << "search" << std::endl;
 		break;
   	}
   	case 2: {
