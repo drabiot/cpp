@@ -10,3 +10,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanA.hpp"
+
+// Constructor
+HumanA::HumanA(std::string init_name, Weapon &init_weapon) : _weapon(init_weapon) {
+	if (init_name.empty())
+		_name = "nobody";
+	else
+		_name   = init_name;
+}
+
+// Destructor
+HumanA::~HumanA() {
+	std::cout << "We just lost " << this->_name << ". Goodbye..." << std::endl;
+}
+
+// Getters
+std::string    HumanA::getName() {
+	return (_name);
+}
+// Setters
+void    HumanA::setName(std::string new_name) {
+	this->_name = new_name;
+}
+
+void	HumanA::attack() {
+	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
+}

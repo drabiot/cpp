@@ -13,8 +13,11 @@
 #include "Weapon.hpp"
 
 // Constructor
-Weapon::Weapon() {
-    _type = "";
+Weapon::Weapon(std::string init_type) {
+    if (init_type.empty())
+        _type = "";
+    else
+        _type = init_type;
 }
 
 // Destructor
