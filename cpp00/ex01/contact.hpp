@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchartie <tchartie@42.fr>                  +#+  +:+       +#+        */
+/*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:24:23 by tchartie          #+#    #+#             */
-/*   Updated: 2024/07/27 23:24:23 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:49:32 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CONTACT_H
-# define CONTACT_H
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
 # include <iostream>
 
@@ -43,4 +43,4 @@ class Contact
 		std::string _darkestSecret;
 };
 
-#endif //CONTACT_H
+#endif //CONTACT_HPP

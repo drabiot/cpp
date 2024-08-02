@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:13:15 by tchartie          #+#    #+#             */
-/*   Updated: 2024/08/02 08:26:54 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/08/02 10:09:21 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,13 +103,13 @@ const static std::string phoneBookInfo[] = {"firstName", "lastName", "nickname",
 
 static bool    is_valid_phone_number(std::string phoneNumber)
 {
-    size_t    start = 0;
+    std::string::iterator begin = phoneNumber.begin();
 
     if (phoneNumber.length() < 2)
         return (false);
     if (phoneNumber[0] == '+')
-        start++;
-    for (std::string::iterator iter = phoneNumber.begin(); iter != phoneNumber.end(); iter++) {
+        begin++;
+    for (std::string::iterator iter = begin ;iter != phoneNumber.end(); iter++) {
             if (!std::isdigit(*iter) && *iter != ' ' && *iter != '.' && *iter != '-')
                 return (false);
     }
