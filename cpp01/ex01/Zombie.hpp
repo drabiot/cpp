@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/02 08:45:10 by tchartie          #+#    #+#             */
-/*   Updated: 2024/08/02 15:27:55 by tchartie         ###   ########.fr       */
+/*   Created: 2024/08/02 15:22:23 by tchartie          #+#    #+#             */
+/*   Updated: 2024/08/02 15:28:34 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ public:
 private:
 	std::string	_name;
 };
- 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif //ZOMBIE_HPP
