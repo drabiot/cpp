@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchartie <tchartie@42.fr>                  +#+  +:+       +#+        */
+/*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:13:15 by tchartie          #+#    #+#             */
-/*   Updated: 2024/07/27 23:13:15 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/08/02 08:26:54 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "phonebook.hpp"
 #include "contact.hpp"
 #include <cstdlib>
+#include <iomanip>
 
 // Constructor
 PhoneBook::PhoneBook()
@@ -29,11 +30,9 @@ static std::string display_format(std::string info)
 {
     std::string final_info;
 
-    if (info.length() <= 10) {
-        for (size_t i = 0; i < 10 - info.length(); i++)
-            final_info += " ";
-        final_info += info;
-    }
+    std::cout << std::setw(10);
+    if (info.length() <= 10)
+        final_info = info;
     else {
         final_info = info;
         final_info.resize(9);
@@ -47,7 +46,7 @@ void    PhoneBook::searchContact()
     std::cout << "|  index   |first name|last  name| nickname |" << std::endl;
     std::cout << "|----------|----------|----------|----------|" << std::endl;
     for (size_t i = 0; i < 8; i++) {
-        std::cout << "|         " << i << "|";
+        std::cout << "|" << std::setw(10) << i << "|";
         std::cout << display_format(_contacts[i].getFirstName()) << "|";
         std::cout << display_format(_contacts[i].getLastName()) << "|";
         std::cout << display_format(_contacts[i].getNickname()) << "|" << std::endl;
@@ -57,20 +56,40 @@ void    PhoneBook::searchContact()
 
 void    PhoneBook::displayContact()
 {
-    std::string    contact;
-    int            index = 10;
+    std::string	contact;
+    int			index = 10;
+    bool		error = true;
     
+	if (_contacts[0].getFirstName().empty() || _contacts[0].getLastName().empty()
+        || _contacts[0].getNickname().empty() || _contacts[0].getPhoneNumber().empty()
+            || _contacts[0].getDarkestSecret().empty()) {
+		std::cout << std::endl << "NO CONTACT TO DISPLAY" << std::endl;
+		return ;
+	}
     std::cout << std::endl << "ENTER INDEX OF THE CONTACT YOU WANT TO SEARCH:" << std::endl;
     std::cout << "> ";
     std::getline(std::cin, contact);
-    while (index > 7) {
+    while (error) {
         while (contact.empty() || std::cin.eof()) {
-            std::cout << std::endl << "NEED TO FILL THE FIELD" << std::endl << "> ";
+			error = true;
+            std::cout << "NEED TO FILL THE FIELD" << std::endl << "> ";
             std::getline(std::cin, contact);
         }
         index = std::atoi(contact.c_str());
-        if (index > 7)
-            std::cout << std::endl << "INVALID INDEX: 0-7" << std::endl << "> ";
+        if (index > 7 || index < 0) {
+			error = true;
+            std::cout << "INVALID INDEX: 0-7" << std::endl << "> ";
+            std::getline(std::cin, contact);
+        }
+        else if (_contacts[index].getFirstName().empty() || _contacts[index].getLastName().empty()
+            || _contacts[index].getNickname().empty() || _contacts[index].getPhoneNumber().empty()
+                || _contacts[index].getDarkestSecret().empty()) {
+			error = true;
+            std::cout << "CONTACT DOESN'T EXIST" << std::endl << "> ";
+            std::getline(std::cin, contact);
+        }
+		else
+			error = false;
     }
     std::cout << std::endl;
     std::cout << "First Name: " << _contacts[index].getFirstName() << std::endl;
@@ -86,12 +105,12 @@ static bool    is_valid_phone_number(std::string phoneNumber)
 {
     size_t    start = 0;
 
-    if (phoneNumber.length() <= 5)
+    if (phoneNumber.length() < 2)
         return (false);
     if (phoneNumber[0] == '+')
         start++;
-    for (size_t i = start; i < phoneNumber.length(); i++) {
-            if (!std::isdigit(phoneNumber[i]) && phoneNumber[i] != ' ')
+    for (std::string::iterator iter = phoneNumber.begin(); iter != phoneNumber.end(); iter++) {
+            if (!std::isdigit(*iter) && *iter != ' ' && *iter != '.' && *iter != '-')
                 return (false);
     }
     return (true);
