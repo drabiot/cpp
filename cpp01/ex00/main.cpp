@@ -33,6 +33,4 @@ int main()
     zombie = newZombie("Mike");
     zombie->annonce();
     delete(zombie);
-
-    return (0);
 }

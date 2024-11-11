@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchartie <tchartie@42.fr>                  +#+  +:+       +#+        */
+/*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:23:46 by tchartie          #+#    #+#             */
-/*   Updated: 2024/07/27 23:23:46 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:40:30 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ Contact::Contact()
 Contact::~Contact()
 {
 }
-
 
 // Getters
 std::string	Contact::getFirstName() const {

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 23:13:15 by tchartie          #+#    #+#             */
-/*   Updated: 2024/08/02 10:09:21 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:19:27 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void    PhoneBook::displayContact()
     std::cout << std::endl << "ENTER INDEX OF THE CONTACT YOU WANT TO SEARCH:" << std::endl;
     std::cout << "> ";
     std::getline(std::cin, contact);
-    while (error) {
-        while (contact.empty() || std::cin.eof()) {
+    while (error && !std::cin.eof()) {
+        while (contact.empty() && !std::cin.eof()) {
 			error = true;
             std::cout << "NEED TO FILL THE FIELD" << std::endl << "> ";
             std::getline(std::cin, contact);
@@ -91,6 +91,8 @@ void    PhoneBook::displayContact()
 		else
 			error = false;
     }
+    if (std::cin.eof())
+        return ;
     std::cout << std::endl;
     std::cout << "First Name: " << _contacts[index].getFirstName() << std::endl;
     std::cout << "Last Name: " << _contacts[index].getLastName() << std::endl;
@@ -118,10 +120,12 @@ static bool    is_valid_phone_number(std::string phoneNumber)
 
 static std::string    askInfoContact(std::string info)
 {
-    size_t         i;
+    size_t i = 0;
     std::string    content;
 
-    for (i = 0; i < 5; i++)
+    if (std::cin.eof())
+        return "";
+    for (; i < 5; i++)
         if (!info.compare(phoneBookInfo[i]))
         break;
     switch (i)
@@ -144,7 +148,7 @@ static std::string    askInfoContact(std::string info)
         case 3: {
             std::cout << "Phone Number: ";
             std::getline(std::cin, content);
-            while (!is_valid_phone_number(content)) {
+            while (!is_valid_phone_number(content) && !std::cin.eof()) {
                 std::cout << "INVALID PHONE NUMBER" << std::endl;
                 std::cout << "Phone Number: ";
                 std::getline(std::cin, content);
@@ -160,7 +164,7 @@ static std::string    askInfoContact(std::string info)
             return (NULL);
         }
     }
-    if (content.empty() || std::cin.eof()) {
+    if (content.empty() && !std::cin.eof()) {
         std::cout << "NEED TO FILL THE FIELD" << std::endl;
         content = askInfoContact(info);
     }

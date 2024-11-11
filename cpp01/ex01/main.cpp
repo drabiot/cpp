@@ -65,6 +65,4 @@ int main(void) {
 		}
 		delete [] (zombies);
 	}
-
-	return(0);
 }

@@ -17,8 +17,8 @@
 
 class	Weapon {
 public:
-	Weapon(std::string init_type);	// Constructor
-	~Weapon(void);					// Destructor
+	Weapon(void);	// Constructor
+	~Weapon(void);	// Destructor
 
 	// Getters
 	const std::string &getType();
@@ -28,6 +28,6 @@ public:
 private:
 	std::string	_type;
 
-};
+}
 
 #endif //WEAPON_HPP
