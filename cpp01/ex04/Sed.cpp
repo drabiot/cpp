@@ -41,7 +41,7 @@ void    Sed::readLine() {
 }
 
 void    Sed::modifyContent() {
-    return ;
+    
 }
 
 void    Sed::writeLine() {
