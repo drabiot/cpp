@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 08:42:09 by tchartie          #+#    #+#              #
-#    Updated: 2024/11/25 22:45:35 by tchartie         ###   ########.fr        #
+#    Updated: 2024/11/26 18:59:38 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CPP			=	c++
 
 #=========== FLAGS ============#
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
 
 #=========== COLOR ============#
 

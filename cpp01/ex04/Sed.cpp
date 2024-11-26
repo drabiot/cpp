@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:45:12 by tchartie          #+#    #+#             */
-/*   Updated: 2024/11/25 23:49:37 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/27 00:37:30 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,27 +24,40 @@ Sed::Sed(const std::string &filename, const std::string &s1, const std::string &
         throw std::runtime_error("Unable to create outfile");
     this->_seek = s1;
     this->_replace = s2;
-    if (_seek.empty())
+    if (_seek.empty() || _replace.empty())
         throw std::runtime_error("Nothing to replace");
 }
 
 // Destructor
 Sed::~Sed() {
-    if (this->_infile)
+    if (this->_infile.is_open())
         this->_infile.close();
-    if (this->_outfile)
-    this->_outfile.close();
+    if (this->_outfile.is_open())
+        this->_outfile.close();
 }
 
-void    Sed::readLine() {
+void    Sed::_readLine() {
     std::getline(_infile, _content);
+    if (_content.empty())
+        _content = "";
 }
 
-void    Sed::modifyContent() {
-    
+void    Sed::_modifyContent(size_t index) {
+    size_t      match = _content.find(_seek, index);
+    std::string newContent;
+
+    if (_seek == _replace)
+        return ;
+    if (match == std::string::npos)
+		return ;
+	newContent = _content.substr(0, match);
+    newContent += _replace;
+    newContent += _content.substr(match + _seek.length());
+    _content = newContent;
+    _modifyContent(match + _replace.length());
 }
 
-void    Sed::writeLine() {
+void    Sed::_writeLine() {
     _outfile << _content;
     if (!_infile.eof())
         _outfile << std::endl;
@@ -53,8 +66,8 @@ void    Sed::writeLine() {
 void    Sed::startSed() {
     while (!_infile.eof())
     {
-        readLine();
-        modifyContent();
-        writeLine();
+        _readLine();
+        _modifyContent();
+        _writeLine();
     }
 }

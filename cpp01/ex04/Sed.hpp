@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:09:25 by tchartie          #+#    #+#             */
-/*   Updated: 2024/11/25 23:41:20 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/27 00:23:11 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ private:
 	std::string		_replace;
 	std::string		_content;
 
-	void			readLine(void);
-	void			modifyContent(void);
-	void			writeLine(void);
+	void			_readLine(void);
+	void			_modifyContent(size_t index = 0);
+	void			_writeLine(void);
 };
 
 #endif //SED_HPP
