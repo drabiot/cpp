@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 16:52:20 by tchartie          #+#    #+#             */
-/*   Updated: 2024/08/02 17:07:52 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/27 19:49:36 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class	Weapon {
 public:
-	Weapon(void);	// Constructor
+	Weapon(const std::string &type);	// Constructor
 	~Weapon(void);	// Destructor
 
 	// Getters
@@ -28,6 +28,6 @@ public:
 private:
 	std::string	_type;
 
-}
+};
 
 #endif //WEAPON_HPP
