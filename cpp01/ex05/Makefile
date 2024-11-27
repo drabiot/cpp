@@ -6,13 +6,13 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/02 08:42:09 by tchartie          #+#    #+#              #
-#    Updated: 2024/11/27 00:44:05 by tchartie         ###   ########.fr        #
+#    Updated: 2024/11/27 00:44:56 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #============ NAME ============#
 
-NAME		=	sed
+NAME		=	Harl
 
 #========= COMPILATOR =========#
 
@@ -37,14 +37,14 @@ WHITE		=	\033[0;97m
 #========== SOURCES ===========#
 
 SRCS 		=	main.cpp \
-				Sed.cpp
+				Harl.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all : 			$(NAME)
 
 $(NAME) :		$(OBJS)
 				@$(CPP) $(CFLAGS) $(OBJS) -o $(NAME)
-				@echo "$(GREEN)Exercice 04 successfully compiled! $(BASE_COLOR)"
+				@echo "$(GREEN)Exercice 05 successfully compiled! $(BASE_COLOR)"
 
 %.o :			%.cpp
 				@echo "$(YELLOW)Compiling: $< $(BASE_COLOR)"
@@ -52,11 +52,11 @@ $(NAME) :		$(OBJS)
 
 clean :
 				@rm -rf $(OBJS)
-				@echo "$(BLUE)Exercice 04 objects files cleanned! $(BASE_COLOR)"
+				@echo "$(BLUE)Exercice 05 objects files cleanned! $(BASE_COLOR)"
 
 fclean :		clean
 				@rm -rf $(NAME)
-				@echo "$(CYAN)Exercice 04 executable file cleanned! $(BASE_COLOR)"
+				@echo "$(CYAN)Exercice 05 executable file cleanned! $(BASE_COLOR)"
 
 re :			fclean all
 
