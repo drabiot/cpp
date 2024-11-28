@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 00:45:23 by tchartie          #+#    #+#             */
-/*   Updated: 2024/11/27 02:14:03 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/11/28 19:18:49 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,23 @@ Harl::~Harl() {
 }
 
 void	Harl::debug() {
-	std::cout << GREEN "[DEBUG] : Ypoulett :D" BASE_COLOR << std::endl;
+	std::cout << GREEN "[DEBUG]" << std::endl << "\tI love Yoruichi :D" << std::endl << "\tThis is the best Bleach character" BASE_COLOR << std::endl;
 }
 
 void	Harl::info() {
-	std::cout << CYAN "[INFO] : Ypoulett n'est pas la" BASE_COLOR << std::endl;
+	std::cout << CYAN "[INFO]" << std::endl << "\tYoruichi is the best girl cuz she have a strong aura & she's so BADASS!" BASE_COLOR << std::endl;
 }
 
 void	Harl::warning() {
-	std::cout << YELLOW "[WARNING] : Waza non Ypoulett" BASE_COLOR << std::endl;
+	std::cout << YELLOW "[WARNING]" << std::endl << "\tHow could you tell me that Yoruichi is not the best Bleach character!" << std::endl << "\tI gonna getsuga tenshou you!" BASE_COLOR << std::endl;
 }
 
 void	Harl::error() {
-	std::cout << RED "[ERROR] : YPOULETT WTF CE POULET !" BASE_COLOR << std::endl;
+	std::cout << RED "[ERROR]" << std::endl << "\tI gonna tell Aizen that you don't like Yoruichi! HE WILL USE HIS HOUGYOKU ON YOU !" BASE_COLOR << std::endl;
 }
 
 void	Harl::incorrect() {
-	std::cout << MAGENTA "[INCORRECT] : ROAR ZABIMARU !" BASE_COLOR << std::endl;
+	std::cout << MAGENTA "[INCORRECT]" << std::endl << "\tROAR ZABIMARU !" BASE_COLOR << std::endl;
 }
 
 
