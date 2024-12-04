@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:01:57 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/04 20:16:41 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/04 21:07:30 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,30 @@ public:
 	Fixed( const int num );
 	Fixed( const float num);
 	Fixed( const Fixed &src );
-	Fixed &operator = ( const Fixed &rhs );
 	~Fixed( void );
+
+	Fixed	&operator =		( const Fixed &rhs );
+	Fixed	operator +		( const Fixed &rhs ) const ;
+	Fixed	operator -		( const Fixed &rhs ) const ;
+	Fixed	operator *		( const Fixed &rhs ) const ;
+	Fixed	operator /		( const Fixed &rhs ) const ;
+
+	bool 	operator >		( const Fixed &rhs ) const ;
+	bool 	operator <		( const Fixed &rhs ) const ;
+	bool 	operator >=		( const Fixed &rhs ) const ;
+	bool 	operator <=		( const Fixed &rhs ) const ;
+	bool 	operator ==		( const Fixed &rhs ) const ;
+	bool 	operator !=		( const Fixed &rhs ) const ;
+
+	Fixed	&operator ++	();
+	Fixed	operator ++		(int);
+	Fixed	&operator --	();
+	Fixed	operator --		(int);
+
+	static	Fixed &min (Fixed &num1, Fixed &num2);
+	static	const Fixed &min (Fixed const &num1, Fixed const &num2);
+	static	Fixed &max (Fixed &num1, Fixed &num2);
+	static	const Fixed &max (Fixed const &num1, Fixed const &num2);
 
 	int		getRawBits( void ) const;
 	void	setRawBits( int const raw );
