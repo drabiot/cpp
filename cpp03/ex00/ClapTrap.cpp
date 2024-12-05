@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:55 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/05 21:19:18 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/05 21:30:23 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,11 +102,6 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 		std::cout << RED "The robot is already in spare parts" BASE_COLOR << std::endl << std::endl;
 		return ;
 	}
-
-	if (this->_energy <= 0) {
-		std::cout << RED "The robot is already out! He have no energy left..." BASE_COLOR << std::endl << std::endl;
-		return ;
-	} 
 
 	if (amount == 0) {
 		std::cout << MAGENTA << this->_name << CYAN " take no damage!" << std::endl << "He still have " << this->_health << " health point!" << std::endl << std::endl;
