@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 22:02:07 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/04 22:46:03 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:38:00 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ Fixed	Fixed::operator / (const Fixed &rhs) const {
 	return (((float)this->_num / (float)rhs._num));
 }
 
-//	Comparaison operators :
+//	Comparasion operators :
 
 bool	Fixed::operator > (const Fixed &rhs) const {
 	return (this->_num > rhs._num);
