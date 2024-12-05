@@ -6,11 +6,11 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:47 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/05 22:17:49 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:04:12 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main() {
     {
@@ -28,45 +28,12 @@ int main() {
         noName.takeDamage(0);
     }
     {
-        ClapTrap    zerg("Zerg");
+        ScavTrap    masterWu;
 
-        zerg.beRepaired(1);
-        zerg.beRepaired(2);
-        zerg.beRepaired(3);
-        zerg.beRepaired(4);
-        zerg.beRepaired(5);
-        zerg.beRepaired(6);
-        zerg.beRepaired(7);
-        zerg.beRepaired(8);
-        zerg.beRepaired(9);
-        zerg.beRepaired(10);
-        zerg.beRepaired(11);
-    
-        zerg.attack("Scuttle");
-        zerg.attack("Gromp");
-
-        zerg.takeDamage(100);
-
-        zerg.beRepaired(100);
-    }
-    {
-        ClapTrap    sir("Sir");
-
-        sir.attack("enemy");
-        sir.attack("enemy");
-        sir.attack("enemy");
-        sir.attack("enemy");
-        sir.attack("");
-        sir.takeDamage(9);
-        sir.attack("enemy");
-        sir.attack("enemy");
-        sir.attack("");
-        sir.attack("enemy");
-        sir.attack("enemy");
-
-        sir.beRepaired(10);
-        sir.takeDamage(1);
-        sir.attack("enemy");
-        sir.takeDamage(1);
+        masterWu.setName("Master Wu");
+        masterWu.attack("Anathema");
+        masterWu.takeDamage(0);
+        masterWu.guardGate();
+        masterWu.guardGate();
     }
 }

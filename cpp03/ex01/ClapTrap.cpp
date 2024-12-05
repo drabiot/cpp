@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:55 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/05 23:05:15 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/05 23:04:37 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap() {
 	this->_health = CT_HEALTH;
 	this->_energy = CT_ENERGY;
 	this->_damage = CT_DAMAGE;
-	std::cout << GREEN "A new robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;; 
+	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;; 
 }
 
 ClapTrap::ClapTrap( const std::string &name ) {
@@ -25,16 +25,16 @@ ClapTrap::ClapTrap( const std::string &name ) {
 	this->_health = CT_HEALTH;
 	this->_energy = CT_ENERGY;
 	this->_damage = CT_DAMAGE;
-	std::cout << GREEN "A new robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;;
 }
 
 ClapTrap::ClapTrap( const ClapTrap &src ) {
 	*this = src;
-	std::cout << GREEN "Copy constructor called" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "ClapTrap Copy constructor called" BASE_COLOR << std::endl << std::endl;;
 }
 
 ClapTrap &ClapTrap::operator = ( const ClapTrap &rhs ) {
-	std::cout << GREEN "Copy assignment operator called" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "ClapTrap Copy assignment operator called" BASE_COLOR << std::endl << std::endl;;
 	if (this == &rhs)
 		return (*this);
 	this->_name = rhs._name;
@@ -45,7 +45,7 @@ ClapTrap &ClapTrap::operator = ( const ClapTrap &rhs ) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << YELLOW << this->_name << " is out of the arena..." BASE_COLOR << std::endl;
+	std::cout << YELLOW << "ClapTrap: " << this->_name << " is out of the arena..." BASE_COLOR << std::endl;
 }
 
 void	ClapTrap::setName( const std::string &name ) {
@@ -84,11 +84,11 @@ int	ClapTrap::getDamage( void ) {
 
 void	ClapTrap::attack( const std::string &target ) {
 	if (this->_energy <= 0 || this->_health <= 0) {
-		std::cout << RED "The robot remains stuck" BASE_COLOR << std::endl << std::endl;
+		std::cout << RED "The ClapTrap robot remains stuck" BASE_COLOR << std::endl << std::endl;
 		return ;
 	}
 
-	std::cout << MAGENTA << this->_name << CYAN " attacks ";
+	std::cout << CYAN "ClapTrap: " << MAGENTA << this->_name << CYAN " attacks ";
 	if (target.empty())
 		std::cout << MAGENTA "nobody";
 	else
