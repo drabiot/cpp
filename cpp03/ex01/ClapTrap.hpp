@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:06:05 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/05 22:41:24 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/09 20:34:46 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	ClapTrap( const std::string &name );
 	ClapTrap( const ClapTrap &src );
 	ClapTrap &operator = ( const ClapTrap &rhs );
-	~ClapTrap( void );
+	virtual ~ClapTrap( void );
 
 	void				setName( const std::string &name );
 	void				setHealth( const int &i );
