@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:06:05 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/09 20:34:46 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:58:19 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ public:
 	int					getEnergy( void );
 	int					getDamage( void );
 
-	void	attack( const std::string &target );
-	void	takeDamage( unsigned int amount );
-	void	beRepaired( unsigned int amount );
+	virtual void	attack( const std::string &target );
+	void			takeDamage( unsigned int amount );
+	void			beRepaired( unsigned int amount );
 protected:
 	std::string	_name;
 	int			_health;

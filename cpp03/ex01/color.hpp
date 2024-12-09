@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 19:48:40 by tchartie          #+#    #+#             */
-/*   Updated: 2024/11/27 19:49:31 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:57:57 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,7 @@
 # define MAGENTA	"\033[0;95m"
 # define CYAN 		"\033[0;96m"
 # define WHITE		"\033[0;97m"
+# define BRED       "\033[1;91m"
+# define BYELLOW    "\033[1;93m"
 
 #endif //COLOR_HPP

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:47 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/09 21:11:10 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/09 21:57:24 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ int main() {
 		masterWu.guardGate();
 		masterWu.guardGate();
     }
+    ClapTrap *weird = new ScavTrap;
+    weird->attack("academie francaise");
 }
