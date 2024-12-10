@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:55 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/05 23:04:37 by tchartie         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:04:07 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap() {
 	this->_health = CT_HEALTH;
 	this->_energy = CT_ENERGY;
 	this->_damage = CT_DAMAGE;
-	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;; 
+	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;
 }
 
 ClapTrap::ClapTrap( const std::string &name ) {
@@ -25,16 +25,16 @@ ClapTrap::ClapTrap( const std::string &name ) {
 	this->_health = CT_HEALTH;
 	this->_energy = CT_ENERGY;
 	this->_damage = CT_DAMAGE;
-	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "A new ClapTrap robot: " << this->_name << " join the arena!" BASE_COLOR << std::endl << std::endl;
 }
 
 ClapTrap::ClapTrap( const ClapTrap &src ) {
 	*this = src;
-	std::cout << GREEN "ClapTrap Copy constructor called" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "ClapTrap Copy constructor called" BASE_COLOR << std::endl << std::endl;
 }
 
 ClapTrap &ClapTrap::operator = ( const ClapTrap &rhs ) {
-	std::cout << GREEN "ClapTrap Copy assignment operator called" BASE_COLOR << std::endl << std::endl;;
+	std::cout << GREEN "ClapTrap Copy assignment operator called" BASE_COLOR << std::endl << std::endl;
 	if (this == &rhs)
 		return (*this);
 	this->_name = rhs._name;
@@ -93,7 +93,7 @@ void	ClapTrap::attack( const std::string &target ) {
 		std::cout << MAGENTA "nobody";
 	else
 		std::cout << MAGENTA << target;
-	std::cout << CYAN ", causing " << RED << this->_damage << CYAN " points of damage!" BASE_COLOR << std::endl << std::endl;;
+	std::cout << CYAN ", causing " << RED << this->_damage << CYAN " points of damage!" BASE_COLOR << std::endl << std::endl;
 	this->_energy--;
 }
 
@@ -114,10 +114,10 @@ void	ClapTrap::takeDamage( unsigned int amount ) {
 	if (this->_health < 0)
 	{
 		this->_health = 0;
-		std::cout << CYAN << this->_health << "! " RED "And it's a critical hit!" BASE_COLOR << std::endl << std::endl;;
+		std::cout << CYAN << this->_health << "! " RED "And it's a critical hit!" BASE_COLOR << std::endl << std::endl;
 	}
 	else
-		std::cout << CYAN << this->_health << "!" BASE_COLOR << std::endl << std::endl;;
+		std::cout << CYAN << this->_health << "!" BASE_COLOR << std::endl << std::endl;
 }
 
 void	ClapTrap::beRepaired( unsigned int amount ) {
