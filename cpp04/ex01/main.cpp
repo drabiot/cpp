@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 20:05:47 by tchartie          #+#    #+#             */
-/*   Updated: 2024/12/10 16:42:08 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/06 20:16:51 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int main() {
 
 	i->makeSound(); //will output the cat sound!
 	j->makeSound();
-	met	std::cout << std::endl;
+	meta->makeSound();
 
-	return 0;dl;
+	std::cout << std::endl;
 
 	const WrongAnimal*	k = new WrongCat();
 
