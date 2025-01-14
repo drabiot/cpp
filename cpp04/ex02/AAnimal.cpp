@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:44:31 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/06 21:57:18 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:25:58 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,6 @@ AAnimal &AAnimal::operator = ( const AAnimal &rhs ) {
 
 AAnimal::~AAnimal() {
 	std::cout << YELLOW << "An AAnimal left" BASE_COLOR << std::endl;
-}
-
-void	AAnimal::makeSound() const {
-	std::cout << CYAN "Weird animals sounds" BASE_COLOR << std::endl;
 }
 
 std::string	AAnimal::getType() const {

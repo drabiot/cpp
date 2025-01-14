@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:16:14 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/06 22:21:04 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:42:10 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include "color.hpp"
+# include "ICharacter.hpp"
 
 class AMateria
 {
@@ -27,8 +28,8 @@ public:
 
 	std::string const & getType() const; //Returns the materia type
 
-	virtual	AMateria* clone() const = 0;
-	virtual	void use(ICharacter& target);
+	virtual	AMateria*	clone() const = 0;
+	virtual	void 		use( ICharacter& target );
 protected:
 	std::string	_type;
 };

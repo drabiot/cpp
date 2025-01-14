@@ -6,11 +6,11 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 22:16:02 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/06 22:26:04 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:45:59 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#incude "AMateria.hpp"
+#include "AMateria.hpp"
 
 AMateria::AMateria() {
 	this->_type = "Typeless";
@@ -39,10 +39,10 @@ AMateria::~AMateria() {
 	std::cout << YELLOW << "An AMateria being destroyed" BASE_COLOR << std::endl;
 }
 
-std::string const	AMateria::getType() const {
+std::string const	& AMateria::getType() const {
 	return (this->_type);
 }
 
 void	AMateria::use( ICharacter& target ) {
-	
+	std::cout << CYAN "💃 Dance in front of " << MAGENTA << target.getName() << CYAN " 💃" << BASE_COLOR << std::endl;
 }

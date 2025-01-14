@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/01/06 22:15:45 by tchartie         ###   ########.fr        #
+#    Updated: 2025/01/14 18:54:20 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CPP			=	c++
 
 #=========== FLAGS ============#
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
 
 #=========== COLOR ============#
 
@@ -36,7 +36,12 @@ WHITE		=	\033[0;97m
 
 #========== SOURCES ===========#
 
-SRCS 		=	main.cpp
+SRCS 		=	main.cpp \
+				AMateria.cpp \
+				Ice.cpp \
+				Cure.cpp \
+				Character.cpp \
+				MateriaSource.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all : 			$(NAME)
