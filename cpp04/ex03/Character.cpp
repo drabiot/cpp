@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:46:23 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/14 21:05:41 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 01:04:50 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ Character &Character::operator = ( const Character &rhs) {
 		return (*this);
 	this->_name = rhs._name;
 	for (size_t i = 0; i < 4; i++) {
-		if (this->_inventory[i])
-			delete this->_inventory[i];
 		if (rhs._inventory[i])
 			this->_inventory[i] = rhs._inventory[i]->clone();
 		else
@@ -49,10 +47,6 @@ Character &Character::operator = ( const Character &rhs) {
 
 Character::~Character( void ) {
 	std::cout << MAGENTA << this->_name << YELLOW << " leaved us..." BASE_COLOR << std::endl;
-	for (size_t i = 0; i < 4; i++) {
-		if (this->_inventory[i])
-			delete this->_inventory[i];
-	}
 }
 
 std::string const & Character::getName() const {
@@ -61,7 +55,10 @@ std::string const & Character::getName() const {
 
 void Character::equip(AMateria* m) {
 	if (!m)
+	{
 		std::cout << RED << "No materia to equip..." BASE_COLOR << std::endl;
+		return ;
+	}
 	for (size_t i = 0; i < 4; i++) {
 		if (!this->_inventory[i]) {
 			this->_inventory[i] = m;

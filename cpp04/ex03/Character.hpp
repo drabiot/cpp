@@ -6,14 +6,13 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 19:46:19 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/14 21:05:48 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:23:41 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-# include <vector>
 # include "AMateria.hpp"
 # include "ICharacter.hpp"
 

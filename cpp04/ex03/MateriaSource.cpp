@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 20:47:20 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/14 19:43:57 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 01:05:04 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ MateriaSource &MateriaSource::operator = ( const MateriaSource &rhs ) {
 	if (this == &rhs)
 		return (*this);
 	for (size_t i = 0; i < 4; i++) {
-		if (this->_inventory[i])
-			delete this->_inventory[i];
 		if (rhs._inventory[i])
 			this->_inventory[i] = rhs._inventory[i]->clone();
 		else
@@ -40,10 +38,6 @@ MateriaSource &MateriaSource::operator = ( const MateriaSource &rhs ) {
 
 MateriaSource::~MateriaSource( void ) {
 	std::cout << YELLOW << "A Materia Source being destroyed" BASE_COLOR << std::endl;
-	for (size_t i = 0; i < 4; i++) {
-		if (this->_inventory[i])
-			delete this->_inventory[i];
-	}
 }
 
 void MateriaSource::learnMateria(AMateria *materia) {
@@ -66,4 +60,26 @@ AMateria* MateriaSource::createMateria(std::string const & type) {
 	}
 	std::cout << RED << "No materia with the type " << MAGENTA << type << RED " can be learn here..." BASE_COLOR << std::endl;
 	return (NULL);
+}
+
+void MateriaSource::print(const std::string &name) {
+    bool isEmpty = true;
+    for (int i = 0; i < 4; ++i) {
+        if (_inventory[i])
+            isEmpty = false;
+    }
+    if (isEmpty) {
+        std::cout << MAGENTA << name << YELLOW " is empty" BASE_COLOR << std::endl;
+        return ;
+    } else {
+        std::cout << MAGENTA << name << YELLOW " contains: " BASE_COLOR << std::endl;
+    }
+    for (int i = 0; i < 4; ++i) {
+        std::cout << BASE_COLOR "  Slot " << i + 1 << " > " RED;
+        if (_inventory[i])
+            std::cout << _inventory[i]->getType();
+        else
+            std::cout << "None";
+        std::cout << std::endl;
+    }
 }

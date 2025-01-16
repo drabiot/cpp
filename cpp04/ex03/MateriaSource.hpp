@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/08 20:45:24 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/14 19:07:51 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 00:50:31 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "IMateriaSource.hpp"
 # include "AMateria.hpp"
+
+# define AS_SPELLBOOK dynamic_cast<MateriaSource *>
 
 class MateriaSource : public IMateriaSource {
 public:
@@ -25,6 +27,7 @@ public:
 	
 	void learnMateria(AMateria *materia);
 	AMateria* createMateria(std::string const & type);
+	void print(std::string const & name = "Universal SpellBook");
 private:
 	AMateria *_inventory[4];
 };

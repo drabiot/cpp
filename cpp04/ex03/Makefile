@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/01/14 18:54:20 by tchartie         ###   ########.fr        #
+#    Updated: 2025/01/16 00:53:21 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,10 @@ SRCS 		=	main.cpp \
 				Ice.cpp \
 				Cure.cpp \
 				Character.cpp \
-				MateriaSource.cpp
+				MateriaSource.cpp \
+				MateriaList.cpp \
+				GetsugaTensho.cpp \
+				KyokaSuigetsu.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all : 			$(NAME)
