@@ -18,8 +18,8 @@ Dog::Dog() : Animal( "Dog" ) {
 }
 
 Dog::Dog( const Dog &src ) : Animal( "Dog" ) {
-	*this = src;
 	this->_brain = new Brain();
+	*this = src;
 	std::cout << GREEN "Dog Copy constructor called" BASE_COLOR << std::endl;
 }
 

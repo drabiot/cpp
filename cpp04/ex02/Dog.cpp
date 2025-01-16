@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:51:33 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/06 21:52:59 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 01:27:41 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ Dog::Dog() : AAnimal( "Dog" ) {
 }
 
 Dog::Dog( const Dog &src ) : AAnimal( "Dog" ) {
-	*this = src;
 	this->_brain = new Brain();
+	*this = src;
 	std::cout << GREEN "Dog Copy constructor called" BASE_COLOR << std::endl;
 }
 

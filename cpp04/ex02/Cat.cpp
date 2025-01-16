@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 15:51:55 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/06 21:52:46 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/16 01:26:58 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ Cat::Cat() : AAnimal( "Cat" ) {
 }
 
 Cat::Cat( const Cat &src ) : AAnimal( "Cat" ) {
-	*this = src;
 	this->_brain = new Brain();
+	*this = src;
 	std::cout << GREEN "Cat Copy constructor called" BASE_COLOR << std::endl;
 }
 
