@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/27 22:28:09 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:29:45 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ int	main()
 			Stefan.promoteBureaucrat();
 			Stefan.promoteBureaucrat();
 			std::cout << Stefan << std::endl;
+		}
+		catch(const std::exception & e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	{
+		try {
+			Bureaucrat Stefan("Stefan", -10);
+		}
+		catch(const std::exception & e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	{
+		try {
+			Bureaucrat Stefan("Stefan", 151);
 		}
 		catch(const std::exception & e) {
 			std::cerr << e.what() << std::endl;

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:02:41 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/27 22:16:06 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:13:59 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include <iostream>
 # include "color.hpp"
+# include "Form.hpp"
+
+class	Form;
 
 class	Bureaucrat {
 public:
@@ -29,6 +32,7 @@ public:
 
 	void	promoteBureaucrat( void );
 	void	demoteBureaucrat( void );
+	void	signForm(Form &toSign);
 private:
 	class GradeTooHightException : public std::exception {
 	public:

@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/01/27 22:28:44 by tchartie         ###   ########.fr        #
+#    Updated: 2025/01/27 22:59:35 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ WHITE		=	\033[0;97m
 #========== SOURCES ===========#
 
 SRCS 		=	main.cpp \
-				Bureaucrat.cpp
+				Bureaucrat.cpp \
+				Form.cpp
 OBJS		=	$(SRCS:.cpp=.o)
 
 all : 			$(NAME)

@@ -6,11 +6,11 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/27 22:28:09 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/28 00:35:28 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
 {
@@ -47,6 +47,42 @@ int	main()
 			Stefan.promoteBureaucrat();
 			Stefan.promoteBureaucrat();
 			std::cout << Stefan << std::endl;
+		}
+		catch(const std::exception & e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	{
+		try {
+			Bureaucrat Stefan("Stefan", 1);
+			Bureaucrat Niko("Niko", 150);
+			
+			Form	Form1;
+			Form	Form2("Poor People's Tax", 1, 1);
+			
+			Niko.signForm(Form1);
+			Niko.signForm(Form2);
+			Stefan.signForm(Form1);
+			Stefan.signForm(Form2);
+		}
+		catch(const std::exception & e) {
+			std::cerr << e.what() << std::endl;
+		}
+	}
+	{
+		Bureaucrat Stefan("Stefan", 1);
+		try {			
+			Form	Form1("Basic Form", 0, 10);
+			
+			Stefan.signForm(Form1);
+		}
+		catch(const std::exception & e) {
+			std::cerr << e.what() << std::endl;
+		}
+		try {			
+			Form	Form1("Basic Form", 200, 10);
+			
+			Stefan.signForm(Form1);
 		}
 		catch(const std::exception & e) {
 			std::cerr << e.what() << std::endl;

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:02:44 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/27 22:17:10 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/27 23:19:33 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,16 @@ void	Bureaucrat::demoteBureaucrat( void ) {
 	if (this->_grade == 150)
 		throw (Bureaucrat::GradeTooLowException());
 	this->_grade += 1;
+}
+
+void	Bureaucrat::signForm(Form &toSign) {
+	try {
+		toSign.beSigned(*this);
+		std::cout << MAGENTA << this->getName() << RED " signed " << MAGENTA << toSign.getName() << BASE_COLOR << std::endl;
+	}
+	catch(const std::exception & e) {
+		std::cerr << MAGENTA << this->getName() << RED " couldn't sign " << MAGENTA << toSign.getName() << RED " because " << MAGENTA << e.what() << BASE_COLOR <<std::endl;
+	}
 }
 
 const char	*Bureaucrat::GradeTooHightException::what() const throw () {
