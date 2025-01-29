@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/28 00:35:28 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:27:53 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	main()
 			
 			Form	Form1;
 			Form	Form2("Poor People's Tax", 1, 1);
+			Form	Form3(Form1);
 			
 			Niko.signForm(Form1);
 			Niko.signForm(Form2);

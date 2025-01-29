@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:02:44 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/29 21:54:23 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:56:52 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,23 @@ void	Bureaucrat::demoteBureaucrat( void ) {
 	this->_grade += 1;
 }
 
-void	Bureaucrat::signForm(Form &toSign) {
+void	Bureaucrat::signForm(AForm &toSign) {
 	try {
 		toSign.beSigned(*this);
 		std::cout << MAGENTA << this->getName() << BLUE " signed " << MAGENTA << toSign.getName() << BASE_COLOR << std::endl;
 	}
 	catch(const std::exception & e) {
 		std::cerr << MAGENTA << this->getName() << RED " couldn't sign " << MAGENTA << toSign.getName() << RED " because " << MAGENTA << e.what() << BASE_COLOR <<std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const &form) {
+	try {
+		form.execute(*this);
+		std::cout << MAGENTA << this->getName() << BLUE " execute " << MAGENTA << form.getName() << BASE_COLOR << std::endl;
+	}
+	catch(const std::exception & e) {
+		std::cerr << MAGENTA << this->getName() << RED " couldn't execute " << MAGENTA << form.getName() << RED " because " << MAGENTA << e.what() << BASE_COLOR <<std::endl;
 	}
 }
 
