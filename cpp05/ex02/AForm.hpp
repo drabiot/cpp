@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 22:59:28 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/29 21:49:52 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:03:38 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ protected:
 		virtual const char *what() const throw();
 	};
 	class NotSigned : public std::exception {
+	public:
+		virtual const char *what() const throw();
+	};
+	class FileError : public std::exception {
 	public:
 		virtual const char *what() const throw();
 	};

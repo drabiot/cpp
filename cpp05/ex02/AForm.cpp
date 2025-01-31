@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 22:59:20 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/29 21:41:54 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/31 14:04:07 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,10 @@ const char	*AForm::AlreadySigned::what() const throw () {
 
 const char	*AForm::NotSigned::what() const throw () {
 	return (RED "Form not signed..." BASE_COLOR);
+}
+
+const char	*AForm::FileError::what() const throw () {
+	return (RED "Couldn't open the file..." BASE_COLOR);
 }
 
 std::ostream	&operator << (std::ostream &os, const AForm &AForm) {

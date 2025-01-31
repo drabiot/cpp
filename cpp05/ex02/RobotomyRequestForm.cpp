@@ -6,10 +6,12 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 20:58:00 by tchartie          #+#    #+#             */
-/*   Updated: 2025/01/29 21:50:30 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/01/30 09:58:31 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <ctime>
+#include <cstdlib>
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm( void ) : AForm("Robotomy Request", 72, 45) {
@@ -44,4 +46,12 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 			throw (AForm::NotSigned());
 	if (executor.getGrade() > this->getExeGrade())
 			throw (AForm::GradeTooLowException());
+	std::srand(std::time(NULL));
+
+	int	random = std::rand();
+
+	if (random % 2 == 0)
+		std::cout << CYAN "*brzzzzzz brrrzzzzzz* Congrats " MAGENTA << this->_target << CYAN ", the robotomy was successful!" BASE_COLOR << std::endl;
+	else
+		std::cout << CYAN "*brzzzzzz brrrzzzzzz* Sorry " MAGENTA << this->_target << CYAN ", the robotomy failled..." BASE_COLOR << std::endl;
 }	
