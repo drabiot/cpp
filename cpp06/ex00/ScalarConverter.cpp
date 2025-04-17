@@ -6,11 +6,10 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:42 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/17 07:59:55 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/17 12:58:49 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
 #include "ScalarConverter.hpp"
 
 static bool	printablePseudoLiterals( cref(str) input );
@@ -57,6 +56,7 @@ void	ScalarConverter::convert( str input ) {
 		return;
 	}
 	ScalarConverter::print(data, literalType);
+	delete static_cast<int *>(data);
 }
 
 t_type	ScalarConverter::identify(cref(str) input) {
