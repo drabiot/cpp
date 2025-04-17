@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:45 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/17 05:49:45 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/17 06:39:36 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 # define SCALARCONVERTER_HPP
 
 # include <iostream>
+# include <cerrno>
+# include <climits>
+# include <cstdlib>
+# include <cfloat>
+# include <string>
 # include "color.hpp"
 
 # define ERROR	std::cerr <<
@@ -38,16 +43,16 @@ typedef enum	e_type {
 
 class ScalarConverter {
 public:
-	static void	convert( cref(str) input );
+	static void	convert( str input );
 private:
 	ScalarConverter( void );
-	ScalarConverter( cref(ScalarConverte) rhs );
+	ScalarConverter( cref(ScalarConverter) rhs );
 	ScalarConverter &operator = ( cref(ScalarConverter) rhs );
 	~ScalarConverter( void );
 
-	static t_type	identify( cref(str) input )
-	static void		*startSerialize( cref(str) input, t_type type )
-	static void		print( void *input , t_type type )
+	static t_type	identify( cref(str) input );
+	static void		*startSerialize( cref(str) input, t_type type );
+	static void		print( void *serialize , t_type type );
 };
 
 #endif //SCALARCONVERTER_HPP
