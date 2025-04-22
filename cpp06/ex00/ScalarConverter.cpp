@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:42 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/17 12:58:49 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:25:05 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	doublePrint(double d);
 
 static bool	isCharPrintable(bool isInt, int value);
 static bool	isFloatInt(float f);
+static bool	isDoubleInt(double d);
 
 ScalarConverter::ScalarConverter( void ) {
 	PRINT GREEN "Create Scalar Converter" CENDL;
@@ -243,7 +244,7 @@ static void	floatPrint(float f, bool isDisplay) {
 	if (!isDisplay)
 		PRINT MAGENTA "Non displayable" CENDL;
 	else {
-		if (isFloatInt(f))
+		if (isFloatInt(f) && f < 1e6)
 			PRINT CYAN AND f AND ".0";
 		else
 			PRINT CYAN AND f;
@@ -252,7 +253,11 @@ static void	floatPrint(float f, bool isDisplay) {
 }
 
 static void	doublePrint(double d) {
-	PRINT BLUE "double:" AND TAB AND CYAN AND d CENDL;
+	PRINT BLUE "double:" AND TAB BASE_COLOR;
+	if (isDoubleInt(d) && d < 1e6)
+		PRINT CYAN AND d AND ".0";
+	else
+		PRINT CYAN AND d CENDL;
 }
 
 static bool	isCharPrintable(bool isInt, int value) {
@@ -269,4 +274,10 @@ static bool	isFloatInt(float f) {
 	return (f == static_cast<int>(f) &&
 			f >= static_cast<float>(INT_MIN) &&
 			f <= static_cast<float>(INT_MAX));
+}
+
+static bool	isDoubleInt(double d) {
+	return (d == static_cast<int>(d) &&
+			d >= static_cast<double>(INT_MIN) &&
+			d <= static_cast<double>(INT_MAX));
 }

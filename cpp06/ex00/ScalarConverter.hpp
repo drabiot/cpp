@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:45 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/17 06:39:36 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:02:33 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 # define ERROR	std::cerr <<
 # define PRINT	std::cout <<
+# define NLINE	std::cout << std::endl
 # define AND	<<
 # define ENDL	<< std::endl
 # define CENDL	<< BASE_COLOR << std::endl
