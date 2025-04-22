@@ -152,16 +152,20 @@ void	ScalarConverter::print(void *serialize , t_type type) {
 }
 
 static bool	printablePseudoLiterals(cref(str) input) {
-	if (input == "-inff" || input == "+inff") {
+	if (input == "-inff" || input == "+inff" || input == "nanf") {
 		PRINT BLUE "char:" AND TAB AND MAGENTA AND "impossible" CENDL;
 		PRINT BLUE "int:" AND TAB AND MAGENTA AND "impossible" CENDL;
 		if (input == "-inff") {
 			floatPrint(-__builtin_inff(), true);
 			doublePrint(-__builtin_inf());
 		}
-		else {
+		else if (input == "+inff") {
 			floatPrint(__builtin_inff(), true);
 			doublePrint(__builtin_inf());
+		}
+		else {
+			floatPrint(__builtin_nanf("0x7fc00000"), true);
+			doublePrint(__builtin_nan("0x7fc00000"));
 		}
 		return (true);
 	}
