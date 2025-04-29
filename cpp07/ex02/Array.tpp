@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 20:21:38 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/29 21:22:54 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:40:53 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,4 @@ const T &Array<T>::operator [] (unsigned int index) const {
 		throw outOfRangeException();
 	}
 	return this->_array[index];
-}
-
-template <typename T>
-std::ostream	&operator<<(std::ostream &out, Array<T> &in)
-{
-	out << "Array size: " << in.size() << ", Array value: ";
-	for (unsigned int i = 0; i < in.size(); i++)
-	{
-		out << in[i];
-		if (i < in.size() - 1)
-			out << ", ";
-	}
-	return (out);
 }

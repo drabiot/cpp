@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/29 21:28:04 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:40:48 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int main(void)
 		{
 			ERROR RED "1000: " AND e.what() CENDL;
 		}
-		PRINT YELLOW AND test CENDL;
 	}
 	PRINT std::endl;
 	{

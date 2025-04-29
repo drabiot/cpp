@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:45 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/29 21:22:41 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/29 21:40:44 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ private:
         }
     };
 };
-
-template <typename T>
-std::ostream	&operator<<(std::ostream &out, Array<T> &in);
 
 #include "Array.tpp"
 
