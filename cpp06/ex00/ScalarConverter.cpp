@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:42 by tchartie          #+#    #+#             */
-/*   Updated: 2025/04/30 21:56:14 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/04/30 22:03:44 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ScalarConverter::convert( str input ) {
 }
 
 t_type	ScalarConverter::identify(cref(str) input) {
-	if (std::isprint(input[0]) && input.size() == 1)
+	if ((std::isprint(input[0]) || (input[0] >= 9 && input[0] <= 126)) && input.size() == 1)
 		return (CHAR);
 	if (!isLiteral(input))
 		return (E_TYPE_END);
