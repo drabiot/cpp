@@ -6,13 +6,13 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/04/22 22:49:54 by tchartie         ###   ########.fr        #
+#    Updated: 2025/05/01 14:06:32 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #============ NAME ============#
 
-NAME		=	template
+NAME		=	whatever
 
 #========= COMPILATOR =========#
 
