@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/03 14:17:20 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/03 15:24:40 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:51:37 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@ Span::~Span( void ) {
     PRINT RED "Destroy the list" CENDL;
 }
 
+std::vector<int>::iterator Span::getBegin( void ) {
+    return(this->_vec.begin());
+}
+
+std::vector<int>::iterator Span::getEnd( void ) {
+    return(this->_vec.end());
+}
+
 void    Span::addNumber( int newNumber ) {
     if (this->_size <= this->_vec.size())
         throw std::out_of_range("List already full");
@@ -45,8 +53,9 @@ void    Span::addNumber( int newNumber ) {
 }
 
 void    Span::addNumber( std::vector<int>::iterator begin, std::vector<int>::iterator end ) {
-    (void)begin;
-    (void)end;
+    if (this->_size <= this->_vec.size() + std::distance(begin, end))
+        throw std::out_of_range("List already full");
+    this->_vec.insert(this->_vec.end(), begin, end);
 }
 
 int     Span::shortestSpan( void ) {

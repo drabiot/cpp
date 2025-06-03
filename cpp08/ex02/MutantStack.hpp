@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:45 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/03 15:49:46 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/03 15:29:18 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SPAN_HPP
-# define SPAN_HPP
+#ifndef MUTANTSTACK_HPP
+# define MUTANTSTACK_HPP
 
 # include <iostream>
 # include <string>
-# include <vector>
-# include <algorithm>
-# include <exception>
-# include <climits>
+
 # include "color.hpp"
 
 # define AND	<<
@@ -34,24 +31,7 @@ typedef std::string str;
 # define cref(type) const type &
 # define ref(type) type &
 
-class Span {
-    public:
-        Span( unsigned int N );
-        Span( cref(Span) src );
-        Span &operator = ( cref(Span) rhs );
-        ~Span( void );
 
-        std::vector<int>::iterator getBegin( void );
-        std::vector<int>::iterator getEnd( void );
+# include "MutantStack.tpp"
 
-        void    addNumber( int newNumber );
-        void    addNumber( std::vector<int>::iterator begin, std::vector<int>::iterator end );
-
-        int     shortestSpan( void );
-        int     longestSpan( void );
-    private:
-        unsigned int        _size;
-        std::vector<int>    _vec;
-};
-
-#endif //SPAN_HPP
+#endif //MUTANTSTACK_HPP
