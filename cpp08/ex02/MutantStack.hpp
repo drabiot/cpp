@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 17:20:45 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/03 15:29:18 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/04 19:50:21 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <string>
+# include <stack>
 
 # include "color.hpp"
 
@@ -31,6 +32,19 @@ typedef std::string str;
 # define cref(type) const type &
 # define ref(type) type &
 
+template <typename T>
+class   MutantStack : public std::stack<T> {
+    public:
+        MutantStack( void );
+        MutantStack( cref(MutantStack) src );
+        MutantStack &operator = ( cref(MutantStack) rhs ); 
+        ~MutantStack( void );
+
+        typedef typename std::stack<T>::container_type::iterator iterator;
+
+        iterator    begin( void );
+        iterator    end( void );
+};
 
 # include "MutantStack.tpp"
 
