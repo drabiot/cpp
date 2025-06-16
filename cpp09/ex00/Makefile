@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/06/12 05:04:46 by tchartie         ###   ########.fr        #
+#    Updated: 2025/06/16 20:42:57 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CPP			=	c++
 
 #=========== FLAGS ============#
 
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98
+CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -g
 
 #=========== COLOR ============#
 
@@ -36,7 +36,8 @@ WHITE		=	\033[0;97m
 
 #========== SOURCES ===========#
 
-SRCS 		=	main.cpp
+SRCS 		=	main.cpp \
+				BitcoinExchange.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
