@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 05:07:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/16 20:01:13 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:05:48 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BITCOINEXCHANGE_HPP
 
 # include <iostream>
+# include <cstdlib>
 # include <string>
 # include <map>
 # include <sstream>

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 05:07:25 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/16 21:28:29 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/17 17:41:44 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,22 @@ std::map<std::time_t, float>    BitcoinExchange::getBitcoinValue( void ) {
 }
 
 bool    BitcoinExchange::parseLine( cref(str) line, ref(std::time_t) date, ref(float) value ) {
-    int year;
-    int month;
-    int day;
-    float val;
-    
-    int n = 0;
-    int res = sscanf(line.c_str(), "%d-%d-%d,%f%n", &year, &month, &day, &val, &n);
-    if (res != 4)
+    if (line.find_first_of(',') == str::npos || (line.find_first_of(',') != line.find_last_of(',')))
         return (false);
-    
-    if (n != (int)line.length())
+    if (line.size() < 12)
         return (false);
 
+    if (line[4] != '-' || line[7] != '-' || line[10] != ',')
+        return (false);
+    int year = std::atof(line.substr(0, 4).c_str());
+    int month = std::atof(line.substr(5, 2).c_str());
+    int day = std::atof(line.substr(8, 2).c_str());
+    str val = line.substr(line.find(',') + 1);
+
+    for (size_t i = 0; i < val.length(); ++i)
+        if (!std::isdigit(val[i]) && val[i] != '.')
+            return (false);
+    
     std::tm tm;
     std::memset(&tm, 0, sizeof(tm));
     tm.tm_year = year - 1900;
@@ -87,27 +90,38 @@ bool    BitcoinExchange::parseLine( cref(str) line, ref(std::time_t) date, ref(f
     tm.tm_hour = 0; tm.tm_min = 0; tm.tm_sec = 0;
     tm.tm_isdst = -1;;
 
+    std::tm tm_tmp = tm;
     date = std::mktime(&tm);
-    if (date == -1)
-        return (false);
+    if (date == -1 || (tm.tm_year != tm_tmp.tm_year || tm.tm_mon != tm_tmp.tm_mon || tm.tm_mday != tm_tmp.tm_mday))
+        return (1);
 
-    value = val;
+    value = std::atof(val.c_str());
     return (true);
 }
 
 int BitcoinExchange::parseInput( cref(str) line, ref(str) dateFormat, ref(std::time_t) date, ref(float) value ) {
-    int year;
-    int month;
-    int day;
-    float val;
-    
-    int n = 0;
-    int res = sscanf(line.c_str(), "%d-%d-%d | %f%n", &year, &month, &day, &val, &n);
-    if (res != 4)
+    if (line.find_first_of('|') == str::npos)
         return (1);
-    
-    if (n != (int)line.length())
+    if (line.size() < 14)
         return (1);
+
+    if (line[4] != '-' || line[7] != '-' || line[10] != ' ' || line[11] != '|' || line[12] != ' ')
+        return (1);
+    int year = std::atof(line.substr(0, 4).c_str());
+    int month = std::atof(line.substr(5, 2).c_str());
+    int day = std::atof(line.substr(8, 2).c_str());
+    str val = line.substr(line.find('|') + 2);
+
+    value = std::atof(val.c_str());
+    if (value < 0)
+        return (2);
+    if (value > 1000)
+        return (3);
+
+    for (size_t i = 0; i < val.length(); ++i)
+        if (!std::isdigit(val[i]) && val[i] != '.')
+            return (1);
+    
 
     dateFormat = to_string(year);
     dateFormat += '-';
@@ -118,14 +132,6 @@ int BitcoinExchange::parseInput( cref(str) line, ref(str) dateFormat, ref(std::t
     if (day < 10)
         dateFormat += '0';
     dateFormat += to_string(day);
-    if (year < 0 || month > 12 || day > 31)
-        return (1);
-    if (year % 4 == 0 && month == 2 && day > 29)
-        return (1);
-    if (year % 4 != 0 && month == 2 && day > 28)
-        return (1);
-    if ((month <= 7 && month % 2 == 0 && day > 30) || (month > 7 && month % 2 == 1 && day > 30))
-        return (1);
     
     std::tm tm;
     std::memset(&tm, 0, sizeof(tm));
@@ -135,15 +141,10 @@ int BitcoinExchange::parseInput( cref(str) line, ref(str) dateFormat, ref(std::t
     tm.tm_hour = 0; tm.tm_min = 0; tm.tm_sec = 0;
     tm.tm_isdst = -1;
 
+    std::tm tm_tmp = tm;
     date = std::mktime(&tm);
-    if (date == -1)
+    if (date == -1 || (tm.tm_year != tm_tmp.tm_year || tm.tm_mon != tm_tmp.tm_mon || tm.tm_mday != tm_tmp.tm_mday))
         return (1);
-
-    value = val;
-    if (value < 0)
-        return (2);
-    if (value > 1000)
-        return (3);
     return (0);
 }
 
@@ -165,19 +166,8 @@ void    BitcoinExchange::run( char *data ){
     std::ifstream input(data);
     if (!input.is_open())
 		throw (std::invalid_argument("Can't open your input"));
-    input.seekg(0, std::ios::end);
-    if (input.tellg() == 0) {
-        input.close();
-        throw (std::invalid_argument("Your input is empty"));
-    }
-    input.seekg(0, std::ios::beg);
     str line;
     std::getline(input, line);
-    if (line != "date | value") {
-        input.close();
-        throw (std::invalid_argument("Miss header in your input"));
-    }
-
     while (std::getline(input, line)) {
         str         dateFormat;
         std::time_t date;
