@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/06/12 05:05:27 by tchartie         ###   ########.fr        #
+#    Updated: 2025/06/18 18:46:34 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ WHITE		=	\033[0;97m
 
 #========== SOURCES ===========#
 
-SRCS 		=	main.cpp
+SRCS 		=	main.cpp \
+				RPN.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
