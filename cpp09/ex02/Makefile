@@ -6,7 +6,7 @@
 #    By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/27 07:48:53 by tchartie          #+#    #+#              #
-#    Updated: 2025/06/12 05:06:10 by tchartie         ###   ########.fr        #
+#    Updated: 2025/06/24 14:19:02 by tchartie         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ WHITE		=	\033[0;97m
 
 #========== SOURCES ===========#
 
-SRCS 		=	main.cpp
+SRCS 		=	main.cpp \
+				PmergeMe.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
 
