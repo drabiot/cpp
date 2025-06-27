@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:18:23 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/28 00:00:59 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/28 00:02:47 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,11 @@ void    PmergeMe::showTemplate( const Container container, cref(str) label ) con
 
 template <typename Container>
 void    PmergeMe::sortLvl( ref(Container) container, int elRange, int level ) {
-    //Container tmpContainer = container;
-
     initPend(container, elRange);
-    showTemplate(container, "main");
-    showTemplate(this->_pend, "pend");
-    showTemplate(this->_nonPart, "non participating");
-    NLINE;
+    //showTemplate(container, "main");
+    //showTemplate(this->_pend, "pend");
+    //showTemplate(this->_nonPart, "non participating");
+    //NLINE;
     insertPend(container, level);
 }
 
@@ -165,9 +163,7 @@ void PmergeMe::insertPend( ref(Container) container, int level ) {
     if (_pend.empty())
         return;
 
-    static const size_t jacobsthal[] = {
-        0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461
-    };
+    static const size_t jacobsthal[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
 
     (void)container;
     (void)jacobsthal;
