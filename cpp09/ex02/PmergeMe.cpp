@@ -6,11 +6,13 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:18:23 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/28 00:02:47 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:25:50 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+static int jacobsthal(int n);
 
 PmergeMe::PmergeMe( void ) {
     PRINT GREEN "PmergeMe created" CENDL;
@@ -18,7 +20,6 @@ PmergeMe::PmergeMe( void ) {
     this->_deq.clear();
     this->_unsorted.clear();
     this->_pend.clear();
-    this->_nonPart.clear();
 }
 
 PmergeMe::PmergeMe( cref(PmergeMe) src ) {
@@ -34,7 +35,6 @@ PmergeMe &PmergeMe::operator = ( cref(PmergeMe) rhs ) {
     this->_deq = rhs._deq;
     this->_unsorted = rhs._unsorted;
     this->_pend = rhs._pend;
-    this->_nonPart = rhs._nonPart;
     return (*this);
 }
 
@@ -74,19 +74,17 @@ void PmergeMe::makePair(int level) {
 }
 
 template <typename Container>
-void PmergeMe::makePairTemplate( ref(Container) container, int level ) {
+void PmergeMe::makePairTemplate(Container& container, int level) {
     int elRange = static_cast<int>(std::pow(2.0, level - 1));
-    if (container.size() < static_cast<size_t>(elRange * 2))
+    size_t size = container.size();
+    if (size < static_cast<size_t>(elRange * 2))
         return;
 
-    typename Container::iterator it = container.begin() + elRange - 1;
-    while (true) {
-        if (*it > *(it + elRange))
-            std::swap_ranges(it - elRange + 1, it + 1, it + 1);
-        if (std::distance(it, container.end()) <= elRange * 3)
-            break;
-        it += elRange * 2;
-    }
+    for (size_t i = elRange - 1; i + elRange < size; i += elRange * 2)
+        if (container[i] > container[i + elRange])
+            for (int j = 0; j < elRange; ++j)
+                std::swap(container[i - elRange + 1 + j], container[i + 1 + j]);
+
     makePairTemplate(container, level + 1);
     sortLvl(container, elRange, level);
 }
@@ -102,17 +100,12 @@ void    PmergeMe::showTemplate( const Container container, cref(str) label ) con
 template <typename Container>
 void    PmergeMe::sortLvl( ref(Container) container, int elRange, int level ) {
     initPend(container, elRange);
-    //showTemplate(container, "main");
-    //showTemplate(this->_pend, "pend");
-    //showTemplate(this->_nonPart, "non participating");
-    //NLINE;
     insertPend(container, level);
 }
 
 template <typename Container>
 void    PmergeMe::initPend( ref(Container) container, int elRange ) {
     this->_pend.clear();
-    this->_nonPart.clear();
 
     if (container.empty() || elRange <= 0)
         return;
@@ -123,7 +116,6 @@ void    PmergeMe::initPend( ref(Container) container, int elRange ) {
     int totalGroups = totalSize / elRange;
 
     if (totalGroups < 2) {
-        this->_nonPart.insert(this->_nonPart.end(), begin, end);
         container.clear();
         return;
     }
@@ -144,27 +136,91 @@ void    PmergeMe::initPend( ref(Container) container, int elRange ) {
 
         if (groupIndex % 2 == 0) {
             this->_pend.insert(this->_pend.end(), groupStart, it);
-        } else {
+        }
+        else {
             mainTemp.insert(mainTemp.end(), groupStart, it);
         }
         groupIndex++;
     }
     if (it != end)
-        this->_nonPart.insert(this->_nonPart.end(), it, end);
+        mainTemp.insert(mainTemp.end(), it, end);
 
     container.clear();
     container.insert(container.end(), mainTemp.begin(), mainTemp.end());
 }
 
 template <typename Container>
-void PmergeMe::insertPend( ref(Container) container, int level ) {
-    (void)level;
-
+void PmergeMe::insertPend(Container &container, int level) {
     if (_pend.empty())
         return;
 
-    static const size_t jacobsthal[] = {0, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461};
+    int elRange = static_cast<int>(std::pow(2.0, level - 1));
+    int totalGroups = static_cast<int>(_pend.size()) / elRange;
 
-    (void)container;
-    (void)jacobsthal;
+    std::vector<int> pendVec(_pend.begin(), _pend.end());
+
+    int inserted = 0;
+    int jacIndex = 1;
+
+    while (inserted < totalGroups) {
+        int jValue = jacobsthal(jacIndex);
+        int prevJ = jacobsthal(jacIndex - 1);
+        int toInsertCount = jValue - prevJ;
+
+        if (inserted + toInsertCount > totalGroups)
+            toInsertCount = totalGroups - inserted;
+
+        for (int i = 0; i < toInsertCount; ++i) {
+            int groupIdx = inserted + i;
+
+            std::vector<int>::iterator groupStart = pendVec.begin();
+            std::advance(groupStart, groupIdx * elRange);
+
+            std::vector<int>::iterator groupEnd = groupStart;
+            std::advance(groupEnd, elRange);
+
+            int lastVal = *(groupEnd - 1);
+            int left = 0;
+            int right = static_cast<int>(container.size()) / elRange;
+
+            while (left < right) {
+                int mid = (left + right) / 2;
+
+                typename Container::iterator midIter = container.begin();
+                std::advance(midIter, mid * elRange + elRange - 1);
+
+                int midVal = *midIter;
+
+                if (lastVal < midVal)
+                    right = mid;
+                else
+                    left = mid + 1;
+            }
+
+            typename Container::iterator insertPos = container.begin();
+            std::advance(insertPos, left * elRange);
+
+            container.insert(insertPos, groupStart, groupEnd);
+        }
+        inserted += toInsertCount;
+        ++jacIndex;
+    }
+
+    _pend.clear();
+}
+
+static int jacobsthal(int n) {
+    if (n == 0 || n == 1)
+        return (n);
+    
+    int j0 = 0;
+    int j1 = 1;
+    int jn = 0;
+
+    for (int i = 2; i <= n; ++i) {
+        jn = j1 + 2 * j0;
+        j0 = j1;
+        j1 = jn;
+    }
+    return jn;
 }

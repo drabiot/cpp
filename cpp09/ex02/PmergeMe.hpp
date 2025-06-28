@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:46:12 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/27 23:50:40 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:04:54 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ class PmergeMe {
         std::vector<int>    _unsorted;
 
         std::vector<int>    _pend;
-        std::vector<int>    _nonPart;
 
         template <typename Container>
         void    makePairTemplate( ref(Container) container, int level );
@@ -70,8 +69,6 @@ class PmergeMe {
 
         template <typename Container>
         void    insertPend( ref(Container) container, int level );
-
-
 };
 
 #endif //PMERGEME_HPP
