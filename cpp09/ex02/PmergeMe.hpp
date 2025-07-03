@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:46:12 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/28 19:04:54 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/07/03 03:18:22 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 # include <vector>
 # include <deque>
+# include <utility>
 
 # define AND	<<
 # define PRINT	std::cout AND
@@ -59,10 +60,10 @@ class PmergeMe {
         void    makePairTemplate( ref(Container) container, int level );
 
         template <typename Container>
-        void    showTemplate( const Container container, cref(str) label ) const;
+        void    showTemplate(const Container& container, cref(std::string) label) const;
 
         template <typename Container>
-        void    sortLvl( ref(Container) container, int elRange, int level );
+        void    sortLvl(Container& container, int elRange, int level);
 
         template <typename Container>
         void    initPend( ref(Container) container, int elRange );
