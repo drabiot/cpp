@@ -40,7 +40,7 @@ class RPN {
 
         std::stack<float>   getStack( void );
 
-        void                popInStack( int number );
+        void                pushInStack( int number );
         bool                makeOperation( char sign );
         bool                checkStack( void );
     private:

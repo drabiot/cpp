@@ -37,7 +37,7 @@ std::stack<float>   RPN::getStack( void ) {
     return (this->_stack);
 }
 
-void    RPN::popInStack( int number ) {
+void    RPN::pushInStack( int number ) {
     this->_stack.push(number);
 }
 

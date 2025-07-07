@@ -27,7 +27,7 @@ int main( int argc, char **argv ) {
 	RPN rpn;
 	for (size_t i = 0; i < input.size(); ++i) {
 		if (isdigit(input.at(i))) {
-			rpn.popInStack(input.at(i) - 48);
+			rpn.pushInStack(input.at(i) - 48);
 		}
 		else if (!iswspace(input.at(i))) {
 			if (!rpn.makeOperation(input.at(i)))
