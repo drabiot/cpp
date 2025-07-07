@@ -118,9 +118,17 @@ int BitcoinExchange::parseInput( cref(str) line, ref(str) dateFormat, ref(std::t
     if (value > 1000)
         return (3);
 
-    for (size_t i = 0; i < val.length(); ++i)
-        if (!std::isdigit(val[i]) && val[i] != '.')
+    bool    hasFloat = false;
+    for (size_t i = 0; i < val.length(); ++i) {
+        if (val[i] == '.' && !hasFloat) {
+            hasFloat = true;
+            continue;
+        }
+        if (val[i] == '.' && hasFloat)
+            return 1;
+        if (!std::isdigit(val[i]))
             return (1);
+    }
     
 
     dateFormat = to_string(year);
@@ -153,9 +161,8 @@ float   BitcoinExchange::searchPrice( std::time_t date ) {
     if (it == this->_bitcoinValue.end())
         --it;
     else if (it->first > date) {
-        if (it == this->_bitcoinValue.begin())
-            throw std::invalid_argument("No date found");
-        --it;
+        if (!(it == this->_bitcoinValue.begin()))
+            --it;
     }
               
     return (it->second);
@@ -210,3 +217,4 @@ str to_string(const T & value) {
     oss << value;
     return oss.str();
 }
+
