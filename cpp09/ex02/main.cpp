@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 21:44:30 by tchartie          #+#    #+#             */
-/*   Updated: 2025/06/25 22:00:48 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:33:40 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int main(int argc, char **argv) {
         if (!sort.add(argv[i]))
             return 1;
 
-    sort.makePair(1);
-    sort.showVectors();
+    struct timespec vecStart, deqStart, vecEnd, deqEnd; 
+    sort.makePair(1, &vecStart, &deqStart, &vecEnd, &deqEnd);
+
+    double vecTime = (vecEnd.tv_sec - vecStart.tv_sec) * 1e6 + (vecEnd.tv_nsec - vecStart.tv_nsec) * 1e-3;
+    double deqTime = (deqEnd.tv_sec - deqStart.tv_sec) * 1e6 + (deqEnd.tv_nsec - deqStart.tv_nsec) * 1e-3;
+    sort.showVectors(vecTime, deqTime);
     return (0);
 }

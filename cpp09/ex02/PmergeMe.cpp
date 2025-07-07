@@ -6,16 +6,16 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:18:23 by tchartie          #+#    #+#             */
-/*   Updated: 2025/07/03 03:27:09 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:45:19 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-static int jacobsthal(int n);
+static int jacobsthal( int n );
 
 template <typename Container>
-bool isSorted(const Container& c);
+static bool isSorted( cref(Container) c );
 
 PmergeMe::PmergeMe( void ) {
     PRINT GREEN "PmergeMe created" CENDL;
@@ -65,25 +65,34 @@ bool PmergeMe::add( char *number ) {
     return true;
 }
 
-void PmergeMe::showVectors( void ) const {
+void PmergeMe::showVectors( double vecTime, double deqTime ) const {
     NLINE;
     showTemplate(this->_unsorted, "Before");
     showTemplate(this->_vec, "After ");
-    NLINE;
-    if (isSorted(this->_vec) && isSorted(this->_deq))
-        PRINT GREEN "Sorted" CENDL;
+    if (isSorted(this->_vec) )
+        PRINT GREEN;
     else
-        PRINT RED "Unsorted" CENDL;
+        PRINT RED;
+    PRINT "Time to process a range of " AND this->_vec.size() AND " elements with std::vector : " AND MAGENTA AND vecTime AND " us" CENDL;
+    if (isSorted(this->_deq) )
+        PRINT GREEN;
+    else
+        PRINT RED;
+    PRINT "Time to process a range of " AND this->_deq.size() AND " elements with std::deque  : " AND MAGENTA AND deqTime AND " us" CENDL;
     NLINE;
 }
 
-void PmergeMe::makePair(int level) {
+void PmergeMe::makePair( int level, struct timespec *vecStart, struct timespec *deqStart, struct timespec *vecEnd, struct timespec *deqEnd ) {
+    clock_gettime(CLOCK_MONOTONIC, vecStart);
     makePairTemplate(this->_vec, level);
+    clock_gettime(CLOCK_MONOTONIC, vecEnd);
+    clock_gettime(CLOCK_MONOTONIC, deqStart);
     makePairTemplate(this->_deq, level);
+    clock_gettime(CLOCK_MONOTONIC, deqEnd);
 }
 
 template <typename Container>
-void PmergeMe::makePairTemplate(Container& container, int level) {
+void PmergeMe::makePairTemplate( ref(Container) container, int level ) {
     int elRange = static_cast<int>(std::pow(2.0, level - 1));
     size_t size = container.size();
     if (size < static_cast<size_t>(elRange * 2))
@@ -102,7 +111,7 @@ void PmergeMe::makePairTemplate(Container& container, int level) {
 }
 
 template <typename Container>
-void PmergeMe::showTemplate(const Container& container, cref(std::string) label) const {
+void PmergeMe::showTemplate( cref(Container) container, cref(std::string) label) const {
     PRINT BLUE AND label AND ": ";
     for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
         PRINT CYAN AND *it AND ' ' AND BASE_COLOR;
@@ -111,13 +120,13 @@ void PmergeMe::showTemplate(const Container& container, cref(std::string) label)
 }
 
 template <typename Container>
-void PmergeMe::sortLvl(Container& container, int elRange, int level) {
+void PmergeMe::sortLvl( ref(Container) container, int elRange, int level ) {
     initPend(container, elRange);
     insertPend(container, level);
 }
 
 template <typename Container>
-void PmergeMe::initPend(Container& container, int elRange) {
+void PmergeMe::initPend( ref(Container) container, int elRange ) {
     this->_pend.clear();
 
     if (container.empty() || elRange <= 0)
@@ -167,7 +176,7 @@ void PmergeMe::initPend(Container& container, int elRange) {
 }
 
 template <typename Container>
-void PmergeMe::insertPend(Container &container, int level) {
+void PmergeMe::insertPend( ref(Container) container, int level ) {
     if (_pend.empty())
         return;
 
@@ -264,7 +273,7 @@ void PmergeMe::insertPend(Container &container, int level) {
     _pend.clear();
 }
 
-static int jacobsthal(int n) {
+static int jacobsthal( int n ) {
     if (n == 0 || n == 1)
         return n;
     int j0 = 0;
@@ -279,7 +288,7 @@ static int jacobsthal(int n) {
 }
 
 template <typename Container>
-bool isSorted(const Container& c) {
+static bool isSorted( cref(Container) c ) {
     if (c.size() < 2)
         return true;
 

@@ -6,7 +6,7 @@
 /*   By: tchartie <tchartie@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 17:46:12 by tchartie          #+#    #+#             */
-/*   Updated: 2025/07/03 03:18:22 by tchartie         ###   ########.fr       */
+/*   Updated: 2025/07/07 20:45:24 by tchartie         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <cstdlib>
 # include <climits>
 # include <cmath>
+# include <ctime>
 # include "color.hpp"
 
 # include <vector>
@@ -45,8 +46,8 @@ class PmergeMe {
         ~PmergeMe();
 
         bool    add( char* number );
-        void    showVectors( void ) const;
-        void    makePair( int level );
+        void    showVectors( double vecTime, double deqTime ) const;
+        void    makePair( int level, struct timespec *vecStart, struct timespec *deqStart, struct timespec *vecEnd, struct timespec *deqEnd );
 
     private:
         std::vector<int>    _vec;
@@ -60,10 +61,10 @@ class PmergeMe {
         void    makePairTemplate( ref(Container) container, int level );
 
         template <typename Container>
-        void    showTemplate(const Container& container, cref(std::string) label) const;
+        void    showTemplate( cref(Container) container, cref(std::string) label) const;
 
         template <typename Container>
-        void    sortLvl(Container& container, int elRange, int level);
+        void    sortLvl( ref(Container) container, int elRange, int level );
 
         template <typename Container>
         void    initPend( ref(Container) container, int elRange );
