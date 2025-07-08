@@ -73,9 +73,15 @@ bool    BitcoinExchange::parseLine( cref(str) line, ref(std::time_t) date, ref(f
 
     if (line[4] != '-' || line[7] != '-' || line[10] != ',')
         return (false);
-    int year = std::atof(line.substr(0, 4).c_str());
-    int month = std::atof(line.substr(5, 2).c_str());
-    int day = std::atof(line.substr(8, 2).c_str());
+
+    str yearStr = line.substr(0, 4);
+    str monthStr = line.substr(5, 2);
+    str dayStr = line.substr(8, 2);
+    if (yearStr.find_first_not_of("0123456789") != str::npos || monthStr.find_first_not_of("0123456789") != str::npos || dayStr.find_first_not_of("0123456789") != str::npos)
+        return (false);
+    int year = std::atof(yearStr.c_str());
+    int month = std::atof(monthStr.c_str());
+    int day = std::atof(dayStr.c_str());
     str val = line.substr(line.find(',') + 1);
 
     for (size_t i = 0; i < val.length(); ++i)
@@ -107,9 +113,15 @@ int BitcoinExchange::parseInput( cref(str) line, ref(str) dateFormat, ref(std::t
 
     if (line[4] != '-' || line[7] != '-' || line[10] != ' ' || line[11] != '|' || line[12] != ' ')
         return (1);
-    int year = std::atof(line.substr(0, 4).c_str());
-    int month = std::atof(line.substr(5, 2).c_str());
-    int day = std::atof(line.substr(8, 2).c_str());
+
+    str yearStr = line.substr(0, 4);
+    str monthStr = line.substr(5, 2);
+    str dayStr = line.substr(8, 2);
+    if (yearStr.find_first_not_of("0123456789") != str::npos || monthStr.find_first_not_of("0123456789") != str::npos || dayStr.find_first_not_of("0123456789") != str::npos)
+        return (1);
+    int year = std::atof(yearStr.c_str());
+    int month = std::atof(monthStr.c_str());
+    int day = std::atof(dayStr.c_str());
     str val = line.substr(line.find('|') + 2);
 
     value = std::atof(val.c_str());

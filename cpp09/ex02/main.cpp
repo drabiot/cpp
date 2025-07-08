@@ -15,7 +15,7 @@
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        std::cerr << "Need integer to sort" << std::endl;
+        ERROR RED "Need integer to sort" CENDL;
         return (1);
     }
 

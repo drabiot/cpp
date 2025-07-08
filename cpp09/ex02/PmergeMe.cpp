@@ -47,25 +47,32 @@ PmergeMe::~PmergeMe( void ) {
 
 bool PmergeMe::add( char *number ) {
     std::string input(number);
+
+    if (input.empty())
+        return (true);
     if (input.find_first_not_of("0123456789") != std::string::npos) {
-        PRINT RED "Your numbers must only be in digit form & must be positive" CENDL;
-        return false;
+        ERROR RED "Your numbers must only be in digit form & must be positive" CENDL;
+        return (false);
     }
 
     long value = std::atol(number);
     if (value < 0 || value > INT_MAX) {
-        PRINT RED "Your numbers must not be greater than Max Int" CENDL;
-        return false;
+        ERROR RED "Your numbers must not be greater than Max Int" CENDL;
+        return (false);
     }
 
     int intVal = static_cast<int>(value);
     this->_vec.push_back(intVal);
     this->_deq.push_back(intVal);
     this->_unsorted.push_back(intVal);
-    return true;
+    return (true);
 }
 
 void PmergeMe::showVectors( double vecTime, double deqTime ) const {
+    if (this->_vec.empty() || this->_deq.empty()) {
+        ERROR RED "Need integer to sort" CENDL;
+        return ;
+    }
     NLINE;
     showTemplate(this->_unsorted, "Before");
     showTemplate(this->_vec, "After ");
@@ -96,7 +103,7 @@ void PmergeMe::makePairTemplate( ref(Container) container, int level ) {
     int elRange = static_cast<int>(std::pow(2.0, level - 1));
     size_t size = container.size();
     if (size < static_cast<size_t>(elRange * 2))
-        return;
+        return ;
 
     for (size_t i = elRange - 1; i + elRange < size; i += elRange * 2) {
         if (container[i] > container[i + elRange]) {
@@ -130,7 +137,7 @@ void PmergeMe::initPend( ref(Container) container, int elRange ) {
     this->_pend.clear();
 
     if (container.empty() || elRange <= 0)
-        return;
+        return ;
 
     typename Container::iterator begin = container.begin();
     typename Container::iterator end = container.end();
@@ -139,7 +146,7 @@ void PmergeMe::initPend( ref(Container) container, int elRange ) {
 
     if (totalGroups < 2) {
         container.clear();
-        return;
+        return ;
     }
 
     typename Container::iterator it = begin;
@@ -178,7 +185,7 @@ void PmergeMe::initPend( ref(Container) container, int elRange ) {
 template <typename Container>
 void PmergeMe::insertPend( ref(Container) container, int level ) {
     if (_pend.empty())
-        return;
+        return ;
 
     int elRange = 1;
     for (int i = 0; i < level - 1; ++i)
@@ -275,7 +282,7 @@ void PmergeMe::insertPend( ref(Container) container, int level ) {
 
 static int jacobsthal( int n ) {
     if (n == 0 || n == 1)
-        return n;
+        return (n);
     int j0 = 0;
     int j1 = 1;
     int jn = 0;
@@ -284,13 +291,13 @@ static int jacobsthal( int n ) {
         j0 = j1;
         j1 = jn;
     }
-    return jn;
+    return (jn);
 }
 
 template <typename Container>
 static bool isSorted( cref(Container) c ) {
     if (c.size() < 2)
-        return true;
+        return (true);
 
     typename Container::const_iterator it = c.begin();
     typename Container::const_iterator next = it;
@@ -298,9 +305,9 @@ static bool isSorted( cref(Container) c ) {
 
     while (next != c.end()) {
         if (*next < *it)
-            return false;
+            return (false);
         ++it;
         ++next;
     }
-    return true;
+    return (true);
 }
