@@ -99,7 +99,7 @@ bool    BitcoinExchange::parseLine( cref(str) line, ref(std::time_t) date, ref(f
     std::tm tm_tmp = tm;
     date = std::mktime(&tm);
     if (date == -1 || (tm.tm_year != tm_tmp.tm_year || tm.tm_mon != tm_tmp.tm_mon || tm.tm_mday != tm_tmp.tm_mday))
-        return (1);
+        return (false);
 
     value = std::atof(val.c_str());
     return (true);
